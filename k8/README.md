@@ -8,15 +8,9 @@
 5. Run terraform init, terraform plan ("To see the resources that will be created") then terraform apply to create the kubernetes cluster using Terraform
 
 ## For configuring kubectl and kops
-# ssh -i ~/.ssh/id_rsa ubuntu@api.awsclusterkopsvon.k8s.local
 
 kops update cluster ${NAME} --yes
 kops validate cluster
-
-export CLUSTER_NAME=$CLUSTER_NAME
-export STATE=$STATE
-kops export kubecfg --name ${CLUSTER_NAME} --state ${STATE}
-kubectl config set-cluster ${CLUSTER_NAME} --server=https://api.${CLUSTER_NAME}
 kubectl run -i --tty busybox --image=busybox -- sh
 
 ## For a HA cluster feel free to modify the code in "generate-kops-template.sh"
